@@ -39,7 +39,7 @@ describe("Card", () => {
     expect(() => { myCard.isRevealed = "friends" }).toThrow(TypeError);
   });
 
-  it("Should, when using comparision operators ( ==, <, >), return correct Boolean value", () => {
+  it("Should, when using comparision operators, return correct Boolean value", () => {
     const equalCard = new Card(Suit.hearts, Rank.ace);
     const smallerCard = new Card(Suit.spades, Rank.king);
 

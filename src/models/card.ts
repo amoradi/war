@@ -4,11 +4,11 @@ import Suit from "./suit";
 class Card {
   private revealed: boolean;
 
-  constructor(public suit: Suit, public rank: Rank) {
+  constructor(private suit: Suit, private rank: Rank) {
     this.revealed = false;
   }
 
-  // added inorder to override comparison operators
+  // override to use comparison operators
   valueOf() {
     return this.rank;
   }
