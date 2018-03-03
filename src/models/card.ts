@@ -8,6 +8,11 @@ class Card {
     this.revealed = false;
   }
 
+  // added inorder to override comparison operators
+  valueOf() {
+    return this.rank;
+  }
+
   get isRevealed(): boolean {
     return this.revealed;
   }

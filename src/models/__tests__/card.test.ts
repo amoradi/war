@@ -1,6 +1,6 @@
-import Card from '../card';
-import Rank from '../rank';
-import Suit from '../suit';
+import Card from "../card";
+import Rank from "../rank";
+import Suit from "../suit";
 
 var myCard: Card;
 
@@ -8,6 +8,7 @@ describe("Card", () => {
   beforeEach(() => {
     myCard = new Card(Suit.clubs, Rank.ace);
   });
+
   it("Should initialize as a Card", () => {
     expect(myCard).toBeInstanceOf(Card);
   });
@@ -36,5 +37,20 @@ describe("Card", () => {
 
   it("Should throw a type error when getting / setting non-Booleans for isRevealed", () => {
     expect(() => { myCard.isRevealed = "friends" }).toThrow(TypeError);
+  });
+
+  it("Should, when using comparision operators ( ==, <, >), return correct Boolean value", () => {
+    const equalCard = new Card(Suit.hearts, Rank.ace);
+    const smallerCard = new Card(Suit.spades, Rank.king);
+
+    expect(equalCard + smallerCard).toEqual(27);
+    expect(equalCard - smallerCard).toEqual(1);
+    expect(equalCard > smallerCard).toBe(true);
+    expect(equalCard >= smallerCard).toBe(true);
+    expect(equalCard < smallerCard).toBe(false);
+    expect(equalCard <= smallerCard).toBe(false);
+    expect(smallerCard == smallerCard).toBe(true);
+    expect(smallerCard === smallerCard).toBe(true);
+    expect(myCard === equalCard).toBe(false);
   });
 });
