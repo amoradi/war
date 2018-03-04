@@ -1,22 +1,21 @@
 import Card from "./card";
 
 class Hand {
-  defeated: boolean = false;
-
   constructor(public cards: Card[]) {}
 
   play(): Card {
     const nextCard = this.cards.shift();
 
-    nextCard.isRevealed = true;
+    if (nextCard !== undefined) { nextCard.isRevealed = true; }
     return nextCard;
   }
 
   thisIsWar(): Card[] {
+    const killCard = this.cards.shift();
     const revealCard = this.cards.shift();
 
-    revealCard.isRevealed = true;
-    return [this.cards.shift(), revealCard];
+    if (revealCard !== undefined) { revealCard.isRevealed = true; }
+    return [killCard, revealCard];
   }
 }
 

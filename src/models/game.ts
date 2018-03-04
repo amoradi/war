@@ -3,22 +3,42 @@ import Deck from "./deck";
 import Hand from "./hand";
 
 class Game {
-  deck: Deck;
   handA: Hand;
   handB: Hand;
   bountyCards: Card[];
+  winner: Hand | Hand[];
 
   constructor() {
-    this.deck = new Deck();
-    const hands = this.deck.deal();
+    const hands = new Deck().deal();
     this.handA = hands[0];
     this.handB = hands[1];
   }
 
-  play(handACard: Card = this.handA.play(), handBCard: Card = this.handB.play()) {
+  gameOver(): void {
+    const handALen = this.handA.cards.length;
+    const handBLen = this.handB.cards.length;
+
+    if (handALen > handBLen) {
+      this.winner = this.handA;
+    }
+
+    if (handALen < handBLen) {
+      this.winner = this.handB;
+    }
+
+    if (handALen === handBLen) {
+      this.winner = [this.handA, this.handB];
+    }
+  }
+
+  play(handACard: Card = this.handA.play(), handBCard: Card = this.handB.play()): void {
+    if (handACard === undefined || handBCard === undefined ) {
+      this.gameOver();
+    }
+
     this.bountyCards.push(...[handACard, handBCard]);
 
-    if (handACard === handBCard) {
+    if (handACard == handBCard) {
       const handAWarCards: Card[] = this.handA.thisIsWar();
       const handBWarCards: Card[] = this.handB.thisIsWar();
 
@@ -33,19 +53,28 @@ class Game {
     if (handACard < handBCard) {
       this.handB.cards.push(...this.getFaceDownBountyCards());
     }
+
+    this.resetBountyCards();
+    this.isGameOver();
   }
 
-  private getFaceDownBountyCards() {
+  private getFaceDownBountyCards(): Card[] {
     this.bountyCards.forEach((card: Card) => {
       card.isRevealed = false;
     });
 
     return this.bountyCards;
   }
+
+  private resetBountyCards(): void {
+    this.bountyCards = [];
+  }
+
+  private isGameOver(): void {
+    if (this.handA.cards.length === 0 || this.handB.cards.length === 0) {
+      this.gameOver();
+    }
+  }
 }
 
 export default Game;
-
-/*
-If the cards are the same rank, it is War. Each player turns up one card face down and one card face up. The player with the higher cards takes both piles (six cards). If the turned-up cards are again the same rank, each player places another card face down and turns another card face up. The player with the higher card takes all 10 cards, and so on.
-*/
