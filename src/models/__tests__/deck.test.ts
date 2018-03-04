@@ -1,15 +1,18 @@
 import Card from "../card";
 import Deck from "../deck";
 
-describe("Deck", () => {
-  it("Should initialize with 52 cards", () => {
-    const myDeck = new Deck();
+var myDeck: Deck;
 
+describe("Deck", () => {
+  beforeEach(() => {
+    myDeck = new Deck();
+  });
+
+  it("Should initialize with 52 cards", () => {
     expect(myDeck.cards.length).toBe(52);
   });
 
-  it("Should initialize with 52 unique cards", () => {
-    const myDeck = new Deck();
+  it("Should initialize with complete deck of cards", () => {
     const cardMembers = {
       2: 0,
       3: 0,
@@ -54,5 +57,20 @@ describe("Deck", () => {
     expect(cardMembers).toHaveProperty("12", 4);
     expect(cardMembers).toHaveProperty("13", 4);
     expect(cardMembers).toHaveProperty("14", 4);
+  });
+
+  it("Should cut evenly", () => {
+    expect(myDeck.cut().length).toEqual(2);
+    expect(myDeck.cut()[0].length).toEqual(26);
+    expect(myDeck.cut()[1].length).toEqual(26);
+  });
+
+  it("Should shuffle", () => {
+    const preShuffledCards = myDeck.cards;
+    
+    expect(myDeck.shuffle() !== preShuffledCards).toBe(true);
+    expect(myDeck.shuffle()).toBe(myDeck.cards);
+    expect(myDeck.shuffle().length).toBe(52);
+    expect(myDeck.shuffle()).toBe(myDeck.cards);
   });
 });
