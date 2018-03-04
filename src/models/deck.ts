@@ -14,8 +14,8 @@ class Deck {
     });
   }
 
-  deal() {
-    const hands = (() => {
+  deal(): Hand[] {
+    const hands: Card[][] = (() => {
       this.shuffle();
 
       return this.cut();
@@ -24,9 +24,9 @@ class Deck {
     return [new Hand(hands[0]), new Hand(hands[1])];
   }
 
-  shuffle() {
-    const cardsClone: Cards[] = this.cards.slice(0);
-    const copy: Cards[] = [];
+  shuffle(): Card[] {
+    const cardsClone: Card[] = this.cards.slice(0);
+    const copy: Card[] = [];
     let n: number = cardsClone.length;
     let i: number;
 
@@ -44,7 +44,7 @@ class Deck {
     return this.cards;
   }
 
-  cut() {
+  cut(): Card[][] {
     return [this.cards.slice(0, 26), this.cards.slice(26)];
   }
 }
