@@ -24,12 +24,23 @@ describe("Deck", () => {
       12: 0,
       13: 0,
       14: 0,
+      suits: {
+        0: 0,
+        1: 0,
+        2: 0,
+        3: 0,
+      }
     };
 
     myDeck.cards.forEach((card: Card) => {
       cardMembers[card.rank] += 1;
+      cardMembers.suits[card.suit] += 1;
     });
 
+    expect(cardMembers.suits).toHaveProperty("0", 13);
+    expect(cardMembers.suits).toHaveProperty("1", 13);
+    expect(cardMembers.suits).toHaveProperty("2", 13);
+    expect(cardMembers.suits).toHaveProperty("3", 13);
     expect(cardMembers).toHaveProperty("2", 4);
     expect(cardMembers).toHaveProperty("3", 4);
     expect(cardMembers).toHaveProperty("4", 4);
