@@ -4,7 +4,7 @@ import Suit from "./suit";
 class Card {
   private revealed: boolean;
 
-  constructor(private suit: Suit, private rank: Rank) {
+  constructor(public suit: Suit, public rank: Rank) {
     this.revealed = false;
   }
 

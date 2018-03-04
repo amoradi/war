@@ -36,7 +36,7 @@ describe("Card", () => {
   });
 
   it("Should throw a type error when getting / setting non-Booleans for isRevealed", () => {
-    expect(() => { myCard.isRevealed = "friends" }).toThrow(TypeError);
+    expect(() => { myCard.isRevealed = "friends"; }).toThrow(TypeError);
   });
 
   it("Should, when using comparision operators, return correct Boolean value", () => {
