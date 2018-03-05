@@ -6,7 +6,8 @@
     "jsRules": {},
     "rules": {
       "member-access": [true, "no-public"],
-      "no-console": [false]
+      "no-console": [false],
+      "triple-equals": [false]
     },
     "rulesDirectory": []
 }
