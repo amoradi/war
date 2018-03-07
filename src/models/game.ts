@@ -2,7 +2,7 @@ import Card from "./card";
 import Deck from "./deck";
 import Hand from "./hand";
 
-class Game {
+export class Game {
   handA: Hand;
   handB: Hand;
   bountyCards: Card[];
@@ -76,5 +76,3 @@ class Game {
     }
   }
 }
-
-export default Game;

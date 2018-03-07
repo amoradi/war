@@ -2,7 +2,7 @@ import Card from "../card";
 import Rank from "../rank";
 import Suit from "../suit";
 
-var myCard: Card;
+let myCard: Card;
 
 describe("Card", () => {
   beforeEach(() => {
